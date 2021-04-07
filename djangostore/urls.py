@@ -21,5 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.home, name = "home"),
     path("list_item/", views.list_item, name = "list_item"),
-    path('add_item/', views.add_item, name='add_item')
+    path('add_item/', views.add_item, name='add_item'),
+    path('update_item/<str:pk>/', views.update_item, name="update_item"),
+    path('delete_item/<str:pk>/', views.delete_item, name="delete_item"),
+    path('item_detail/<str:pk>/', views.item_detail, name="item_detail"),
+    path('issue_items/<str:pk>/', views.issue_items, name="issue_items"),
+    path('receive_items/<str:pk>/', views.receive_items, name="receive_items"),
 ]

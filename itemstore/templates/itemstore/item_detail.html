@@ -1,4 +1,3 @@
-
 {% load static %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
@@ -52,37 +51,26 @@
   {% endif %}
   <div class="bg-light p-5 rounded">
     <div class="header">{{h1}}</div>
-      <form method='POST' action=''>{% csrf_token %}
-          {{form|crispy}}<br>
-          <input type="submit" value='Search'/>
-      </form>
-      <br>
-      <div class="display_table">
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>COUNT</th>
-                <th>CATEGORY</th>
-                <th>ITEM NAME</th>
-                <th>QUANTITY IN STORE</th>
-                <th>TIME CREATED</th>
-                <th>LAST UPDATE</th>
-                <th>DELETE</th>
-              </tr>
-            </thead>
-          {% for item in items %}
-              <tr class="text-light bg-dark">
-                <td>{{forloop.counter}}</td>
-                <td>{{item.category}}</td>
-                <td><a href="{% url 'update_item' item.id %}">{{item.item_name}}</a></td>
-                <td><a href="{% url 'item_detail' item.id %}">{{item.quantity}}</a></td>
-                <td>{{item.created_time}}</td>
-                <td>{{item.last_updated}}</td>
-                <td><a href="{% url 'delete_item' item.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
-              </tr>
-          {% endfor %}
-        </table>
-    </div>
+      <a href="{% url 'issue_items' items.id %}"><div class='btn btn-danger'>ISSUE THIS ITEM</div></a>
+      <a href="{% url 'receive_items' items.id %}"><div class='btn btn-primary'>RECEIVE THIS ITEM</div></a>
+      <br><br>
+        <div class="display_table">
+
+            <table class='table'>
+                <tr>
+                    <th>ITEM NAME</th>
+                    <th>QUANTITY IN STORE</th>
+                    <th>LAST UPDATED</th>
+                    <th>REORDER LEVEL</th>
+                </tr>
+                <tr>
+                    <td>{{items.item_name}}</td>
+                    <td>{{items.quantity}}</td>
+                    <td>{{items.last_updated}}</td>
+                    <td>{{items.reorder_level}}</td>
+                </tr>
+            </table>
+        </div>
   </div>
 </main>
 

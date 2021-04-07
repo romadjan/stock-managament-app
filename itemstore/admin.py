@@ -7,6 +7,8 @@ class StockAdmin(admin.ModelAdmin):
     list_filter = ['category']
     search_fields = ['category', 'item_name']
 admin.site.register(Stock, StockAdmin)
+admin.site.register(Category)
+
 
 
 # Register your models here.
