@@ -139,5 +139,4 @@ def receive_items(request, pk):
         }
     return render(request, "itemstore/add_item.html", context)
 
-
-
+# Create your views here.

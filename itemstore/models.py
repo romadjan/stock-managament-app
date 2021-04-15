@@ -25,3 +25,5 @@ class Stock(models.Model):
 
     def __str__(self):
         return f"{self.category} {self.item_name} {self.quantity}"
+
+# Create your models here.
