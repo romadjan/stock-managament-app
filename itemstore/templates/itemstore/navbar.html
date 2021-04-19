@@ -9,17 +9,28 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/list_item">List Items</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/add_item">Add Item</a>
-        </li>
+        {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/list_item">List Items</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/add_item">Add Item</a>
+              </li>
+              <li class="nav-item">
+                   <a class="nav-link" href="/list_history">List History</a>
+              </li>
+        {% endif %}
+
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+      <ul class="navbar-nav">
+          {% if request.user.is_authenticated %}
+          <li><a href="/accounts/logout"><button class="btn btn-danger">{{ user }} | Logout</button></a></li>
+          {% else %}
+          <li><a href="/accounts/login"><button type="button" class="btn btn-success">Login</button></a></li>
+          {% endif %}
+      </ul>
+
     </div>
   </div>
 </nav>

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'itemstore',
-    'crispy_forms'
+    'crispy_forms',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -129,5 +130,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
 
 

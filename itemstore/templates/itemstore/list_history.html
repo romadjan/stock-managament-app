@@ -13,6 +13,18 @@
     <title>{{title}}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
+    <link href="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.structure.min.css' %}" rel="stylesheet">
+    <link href="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'itemstore/js/nprogress/nprogress.css' %}" rel="stylesheet">
+
+
+    <script src="{% static 'itemstore/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
+    <script src="{% static 'itemstore/js/pagination/paging.js' %}"></script>
+    <script src="{% static 'itemstore/js/nprogress/nprogress.js' %}"></script>
+    <script src="{% static 'itemstore/js/myjs.js' %}"></script>
+
 
 
 
@@ -52,48 +64,44 @@
   {% endif %}
   <div class="bg-light p-5 rounded">
     <div class="header">{{h1}}</div>
-      <form method='POST' action=''>{% csrf_token %}
-          {{form|crispy}}<br>
-          <input type="submit" value='Search'/>
-      </form>
+      <br>
+       <form method='POST' action=''>{% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value='Search'/>
+        </form>
       <br>
       <div class="display_table">
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>COUNT</th>
-                <th>CATEGORY</th>
-                <th>ITEM NAME</th>
-                <th>QUANTITY IN STORE</th>
-                <th>REORDER LEVEL</th>
-                <th>TIME CREATED</th>
-                <th>LAST UPDATE</th>
-                <th>DELETE</th>
-              </tr>
-            </thead>
-          {% for item in items %}
-              <tr class="text-light bg-dark">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>COUNT</th>
+              <th>ID</th>
+              <th>CATEGORY</th>
+              <th>ITEM NAME</th>
+              <th>QUANTITY IN STORE</th>
+              <th>ISSUE QUANTITY</th>
+              <th>RECEIVE QUANTITY</th>
+              <th>ISSUE BY</th>
+              <th>RECEIVE BY</th>
+              <th>LAST UPDATED</th>
+            </tr>
+          </thead>
+        {% for item in items %}
+            <tr>
 
-
-                <td>{{forloop.counter}}</td>
-                <td>{{item.category}}</td>
-                <td><a href="{% url 'update_item' item.id %}">{{item.item_name}}</a></td>
-                <td>
-                    {% if item.quantity <= item.reorder_level %}
-                    <div style="background-color: orange;">
-                        <a href="{% url 'item_detail' item.id %}">{{item.quantity}}</a>
-                    </div>
-                    {% else %}
-                        <a href="{% url 'item_detail' item.id %}">{{item.quantity}}</a>
-                    {% endif %}
-                </td>
-                <td><a href="{% url 'reorder_level' item.id %}">{{item.reorder_level}}</a></td>
-                <td>{{item.created_time}}</td>
-                <td>{{item.last_updated}}</td>
-                <td><a href="{% url 'delete_item' item.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
-              </tr>
-          {% endfor %}
-        </table>
+              <td>{{forloop.counter}}</td>
+              <td>{{item.id}}</td>
+              <td>{{item.category}}</td>
+              <td>{{item.item_name}}</td>
+              <td>{{item.quantity}}</td>
+              <td>{{item.issue_quantity}}</td>
+              <td>{{item.receive_quantity}}</td>
+              <td>{{item.issue_by}}</td>
+              <td>{{item.receive_by}}</td>
+              <td>{{item.last_updated}}</td>
+            </tr>
+        {% endfor %}
+      </table>
     </div>
   </div>
 </main>
