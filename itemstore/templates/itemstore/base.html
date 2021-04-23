@@ -10,18 +10,19 @@
     <meta name="generator" content="Hugo 0.82.0">
     <title>{{title}}</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
+
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/navbar-fixed/">
     <link href="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.min.css' %}" rel="stylesheet">
     <link href="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.structure.min.css' %}" rel="stylesheet">
     <link href="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css' %}" rel="stylesheet">
+    <link href="{% static 'itemstore/js/nprogress/nprogress.css' %}" rel="stylesheet">
 
 
     <script src="{% static 'itemstore/js/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'itemstore/js/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
+    <script src="{% static 'itemstore/js/pagination/paging.js' %}"></script>
+    <script src="{% static 'itemstore/js/nprogress/nprogress.js' %}"></script>
     <script src="{% static 'itemstore/js/myjs.js' %}"></script>
-
-
 
 
     <!-- Bootstrap core CSS -->
@@ -53,8 +54,15 @@
 {% include 'itemstore/navbar.html' %}
 
 <main class="container">
+  {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class='{{ message.tags }}'{% endif %}>{{ message }}</li>
+            {% endfor %}
+       </ul>
+  {% endif %}
   <div class="bg-light p-5 rounded">
-    <h1>{{h1}}</h1>
+    <div class="header">{{h1}}</div>
     {% block title %}
     {% endblock %}
 
